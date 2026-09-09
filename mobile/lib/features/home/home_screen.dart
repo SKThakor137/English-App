@@ -35,7 +35,6 @@ class HomeScreen extends StatelessWidget {
           GestureDetector(
             onTap: () => context.push('/challenges'),
             child: Container(
-              margin: const EdgeInsets.only(right: 16),
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
               decoration: BoxDecoration(
                 color: const Color(0xFFFFF7ED),
@@ -48,6 +47,22 @@ class HomeScreen extends StatelessWidget {
                   SizedBox(width: 4),
                   Text('3 Days', style: TextStyle(color: Color(0xFFC2410C), fontWeight: FontWeight.bold, fontSize: 12)),
                 ],
+              ),
+            ),
+          ),
+          const SizedBox(width: 8),
+          GestureDetector(
+            onTap: () => context.push('/profile'),
+            child: Container(
+              margin: const EdgeInsets.only(right: 16),
+              width: 32,
+              height: 32,
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+                color: Color(0xFFE2E8F0),
+              ),
+              child: const Center(
+                child: Text('A', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Color(0xFF475569))),
               ),
             ),
           ),

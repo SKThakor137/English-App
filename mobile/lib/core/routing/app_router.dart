@@ -13,6 +13,7 @@ import '../../features/conversation/conversation_screen.dart';
 import '../../features/vocabulary/vocabulary_screen.dart';
 import '../../features/progress/progress_screen.dart';
 import '../../features/documents/documents_screen.dart';
+import '../../features/profile/profile_screen.dart';
 
 class AppRouter {
   final SecureStorageService storage;
@@ -83,6 +84,10 @@ class AppRouter {
       GoRoute(
         path: '/documents',
         builder: (context, state) => const DocumentsScreen(),
+      ),
+      GoRoute(
+        path: '/profile',
+        builder: (context, state) => const ProfileScreen(),
       ),
     ],
   );
