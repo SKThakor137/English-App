@@ -55,4 +55,18 @@ Allow learners to upload arbitrary workplace PDFs, articles, or study textbooks,
 
 ### Frontend
 - [`apps/web/app/(learner)/documents/page.tsx`](file:///home/aavatto/English/apps/web/app/(learner)/documents/page.tsx) — Drag-and-drop document upload and sentence drill launcher.
+- [`apps/admin/app/documents/page.tsx`](file:///home/aavatto/English/apps/admin/app/documents/page.tsx) — Admin PDF ingestion monitor and chunk inspection.
+
+---
+
+## 6. Phase Completion Checklist & Track Validation
+
+- [x] Ingestion and cleaning of arbitrary PDF documents via `pdf-parse`.
+- [x] Text artifact noise stripping (headers, footers, page numbers).
+- [x] Structural chunking into logical chapters, paragraphs, and practice sentences.
+- [x] Automated CEFR readability index estimation on extracted text.
+- [x] Dynamic generation of personalized speaking drills from documents.
+- [x] Admin document telemetry and processing audit view.
+- [x] **Track Status**: ✅ Phase 6 Complete & On Track
+
 

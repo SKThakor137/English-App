@@ -65,4 +65,19 @@ Ensure long-term lexical retention through the SuperMemo SM-2 spaced repetition 
 ### Frontend
 - [`apps/web/app/(learner)/vocabulary/page.tsx`](file:///home/aavatto/English/apps/web/app/(learner)/vocabulary/page.tsx) — Interactive flip flashcards with 4-tier SM-2 rating buttons.
 - [`apps/web/app/(learner)/progress/page.tsx`](file:///home/aavatto/English/apps/web/app/(learner)/progress/page.tsx) — Learner skill radar, practice history, and weakness drill links.
+- [`mobile/lib/features/vocabulary/vocabulary_screen.dart`](file:///home/aavatto/English/mobile/lib/features/vocabulary/vocabulary_screen.dart) — Mobile SuperMemo SM-2 flashcard deck.
+- [`mobile/lib/features/progress/progress_screen.dart`](file:///home/aavatto/English/mobile/lib/features/progress/progress_screen.dart) — Mobile CEFR radar chart and weakness remediation.
+
+---
+
+## 6. Phase Completion Checklist & Track Validation
+
+- [x] SuperMemo SM-2 spaced repetition scheduler with 4-tier rating.
+- [x] Retention interval progression ($I(1) = 1, I(2) = 6, I(n) = I(n-1) \times \text{EF}$).
+- [x] Multi-dimensional CEFR skill analytics (Pronunciation, Fluency, Grammar, Lexical Variety, Coherence).
+- [x] Recurring weakness pattern recognition and drill recommendations.
+- [x] Interactive flip flashcard deck with instant rating on Web & Mobile.
+- [x] Progress analytics dashboards with 30-day velocity metrics on Web & Mobile.
+- [x] **Track Status**: ✅ Phase 8 Complete & On Track
+
 

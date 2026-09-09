@@ -48,4 +48,19 @@ Immerse learners in realistic, multi-turn conversational roleplays with AI perso
 
 ### Frontend
 - [`apps/web/app/(learner)/conversations/page.tsx`](file:///home/aavatto/English/apps/web/app/(learner)/conversations/page.tsx) — Interactive voice chat interface with scenario picker.
+- [`apps/web/app/(learner)/practice/free-speaking/page.tsx`](file:///home/aavatto/English/apps/web/app/(learner)/practice/free-speaking/page.tsx) — 60s Free Speaking Monologue recorder with filler word analysis.
+- [`mobile/lib/features/conversation/conversation_screen.dart`](file:///home/aavatto/English/mobile/lib/features/conversation/conversation_screen.dart) — Mobile conversational roleplay voice UI.
+
+---
+
+## 6. Phase Completion Checklist & Track Validation
+
+- [x] Multi-turn conversational state machine with roleplay personas.
+- [x] Scenarios implemented: Agile Scrum Standup, Tech Job Interview, Hotel Concierge.
+- [x] Turn-by-turn speech evaluation analyzing grammar and topical flow.
+- [x] Speech bubble UI with audio playback and push-to-talk recording.
+- [x] 60s Free Speaking Monologue mode with instant filler word detection (`um`, `like`, `actually`).
+- [x] Mobile voice conversation screen with speech bubbles.
+- [x] **Track Status**: ✅ Phase 7 Complete & On Track
+
 

@@ -62,6 +62,21 @@ Construct the educational spine of the platform: structured CEFR-aligned courses
 ### Frontend
 - [`apps/web/app/(learner)/courses/page.tsx`](file:///home/aavatto/English/apps/web/app/(learner)/courses/page.tsx) — Learner Course Catalog with level badges.
 - [`apps/web/app/(learner)/courses/[id]/page.tsx`](file:///home/aavatto/English/apps/web/app/(learner)/courses/%5Bid%5D/page.tsx) — Course Syllabus and lesson launch view.
-- [`apps/admin/app/curriculum/page.tsx`](file:///home/aavatto/English/apps/admin/app/curriculum/page.tsx) — Administrative curriculum data table.
-- [`mobile/lib/features/practice/practice_hub_screen.dart`](file:///home/aavatto/English/mobile/lib/features/practice/practice_hub_screen.dart) — Mobile course and practice mode selector.
+- [`apps/admin/app/curriculum/page.tsx`](file:///home/aavatto/English/apps/admin/app/curriculum/page.tsx) — Administrative curriculum data table with tabs.
+- [`apps/admin/app/curriculum/sentences/page.tsx`](file:///home/aavatto/English/apps/admin/app/curriculum/sentences/page.tsx) — Administrative Sentence & IPA Phoneme authoring studio.
+- [`mobile/lib/features/practice/practice_hub_screen.dart`](file:///home/aavatto/English/mobile/lib/features/practice/practice_hub_screen.dart) — Mobile course and practice mode selector with GoRouter links.
+
+---
+
+## 7. Phase Completion Checklist & Track Validation
+
+- [x] Hierarchical curriculum structure (Courses, Lessons, Sentences, Paragraphs, Stories).
+- [x] Database seeder covering 5 CEFR courses (A1 to C1) with real sentences & IPA transcriptions.
+- [x] Public curriculum API endpoints with filtering by level.
+- [x] Administrative CRUD endpoints for courses, lessons, and practice sentences.
+- [x] Learner Web Course Browser & Lesson Syllabus viewer.
+- [x] Admin Web Curriculum table and Sentence & IPA authoring console.
+- [x] Mobile Practice Hub with syllabus levels.
+- [x] **Track Status**: ✅ Phase 2 Complete & On Track
+
 
