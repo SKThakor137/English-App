@@ -24,9 +24,14 @@ export default function LoginPage() {
         password,
       });
 
-      if (res?.data?.accessToken) {
-        localStorage.setItem('access_token', res.data.accessToken);
-        localStorage.setItem('refresh_token', res.data.refreshToken);
+      const token = res?.data?.tokens?.accessToken || res?.data?.accessToken;
+      const refreshToken = res?.data?.tokens?.refreshToken || res?.data?.refreshToken;
+
+      if (token) {
+        localStorage.setItem('access_token', token);
+        if (refreshToken) {
+          localStorage.setItem('refresh_token', refreshToken);
+        }
         router.push('/dashboard');
       } else {
         setError('Login failed. Please check your credentials.');
