@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class PracticeHubScreen extends StatelessWidget {
   const PracticeHubScreen({super.key});
@@ -115,7 +116,10 @@ class PracticeHubScreen extends StatelessWidget {
                       style: const TextStyle(color: Color(0xFF64748B), fontSize: 12),
                     ),
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () => context.push(
+                        '/sentence-practice',
+                        extra: {'courseTitle': c['title']},
+                      ),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xFF16A34A),
                         foregroundColor: Colors.white,

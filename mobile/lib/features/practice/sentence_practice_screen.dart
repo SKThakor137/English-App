@@ -2,7 +2,12 @@ import 'package:flutter/material.dart';
 
 class SentencePracticeScreen extends StatefulWidget {
   final String sentenceId;
-  const SentencePracticeScreen({super.key, required this.sentenceId});
+  final String? courseTitle;
+  const SentencePracticeScreen({
+    super.key,
+    this.sentenceId = 's1',
+    this.courseTitle,
+  });
 
   @override
   State<SentencePracticeScreen> createState() => _SentencePracticeScreenState();

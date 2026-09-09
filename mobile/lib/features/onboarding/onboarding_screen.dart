@@ -144,11 +144,34 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 ),
                 const Spacer(),
               ],
+              if (_currentStep == 2) ...[
+                const Text(
+                  'What are your primary goals?',
+                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.w800, color: Color(0xFF0F172A)),
+                ),
+                const SizedBox(height: 6),
+                const Text(
+                  'Personalize your conversation scenarios and vocabulary drills.',
+                  style: TextStyle(fontSize: 13, color: Color(0xFF64748B)),
+                ),
+                const SizedBox(height: 16),
+                Expanded(
+                  child: ListView(
+                    children: [
+                      _buildGoalOption('Workplace Meetings & Tech Discussions', '💼'),
+                      _buildGoalOption('Everyday Small Talk & Social Fluency', '☕'),
+                      _buildGoalOption('Job Interview Preparation', '🎯'),
+                      _buildGoalOption('Accent Softening & Intonation Drills', '🎙️'),
+                      _buildGoalOption('IELTS / TOEFL Speaking Exam Prep', '🎓'),
+                    ],
+                  ),
+                ),
+              ],
 
               // Bottom Navigation Actions
               ElevatedButton(
                 onPressed: () {
-                  if (_currentStep < 1) {
+                  if (_currentStep < 2) {
                     setState(() => _currentStep++);
                   } else {
                     context.go('/home');
@@ -161,12 +184,53 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
                 ),
                 child: Text(
-                  _currentStep == 1 ? 'Start Speaking' : 'Continue',
+                  _currentStep == 2 ? 'Start Speaking' : 'Continue',
                   style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
               ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildGoalOption(String title, String icon) {
+    final isSelected = _selectedGoals.contains(title);
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          if (isSelected) {
+            _selectedGoals.remove(title);
+          } else {
+            _selectedGoals.add(title);
+          }
+        });
+      },
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 10),
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: isSelected ? const Color(0xFFF0FDF4) : Colors.white,
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(
+            color: isSelected ? const Color(0xFF16A34A) : const Color(0xFFE2E8F0),
+            width: isSelected ? 2 : 1,
+          ),
+        ),
+        child: Row(
+          children: [
+            Text(icon, style: const TextStyle(fontSize: 22)),
+            const SizedBox(width: 14),
+            Expanded(
+              child: Text(
+                title,
+                style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Color(0xFF0F172A)),
+              ),
+            ),
+            if (isSelected)
+              const Icon(Icons.check_circle, color: Color(0xFF16A34A), size: 20),
+          ],
         ),
       ),
     );

@@ -59,7 +59,13 @@ class AppRouter {
       ),
       GoRoute(
         path: '/sentence-practice',
-        builder: (context, state) => const SentencePracticeScreen(),
+        builder: (context, state) {
+          final extra = state.extra as Map<String, dynamic>?;
+          return SentencePracticeScreen(
+            sentenceId: extra?['sentenceId'] as String? ?? 's1',
+            courseTitle: extra?['courseTitle'] as String?,
+          );
+        },
       ),
       GoRoute(
         path: '/challenges',

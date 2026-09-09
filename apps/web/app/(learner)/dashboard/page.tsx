@@ -14,6 +14,9 @@ import {
   Trophy,
   ArrowRight,
   TrendingUp,
+  Headphones,
+  ScrollText,
+  Timer,
 } from 'lucide-react';
 
 export default function DashboardPage() {
@@ -63,6 +66,12 @@ export default function DashboardPage() {
           </div>
 
           <div className="flex items-center space-x-4">
+            <Link
+              href="/courses"
+              className="text-xs font-semibold text-slate-600 hover:text-brand-600 hidden sm:block"
+            >
+              Curriculum
+            </Link>
             <Link
               href="/progress"
               className="text-xs font-semibold text-slate-600 hover:text-brand-600 hidden sm:block"
@@ -254,6 +263,97 @@ export default function DashboardPage() {
               </div>
               <div className="mt-4 flex items-center text-xs font-bold text-purple-600 space-x-1">
                 <span>Review Deck</span>
+                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </Link>
+          </div>
+        </div>
+
+        {/* Deliberate Fluency Gym */}
+        <div>
+          <div className="flex items-center justify-between mb-4">
+            <div>
+              <h2 className="text-xl font-bold text-slate-900">Deliberate Fluency Gym</h2>
+              <p className="text-xs text-slate-500">Advanced cognitive drills to build articulation speed, rhythm, and monologue confidence.</p>
+            </div>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            <Link
+              href="/practice/listen-repeat"
+              className="group p-5 bg-white rounded-2xl border border-slate-200 hover:border-cyan-500 shadow-sm hover:shadow-md transition flex flex-col justify-between"
+            >
+              <div>
+                <div className="w-10 h-10 rounded-xl bg-cyan-50 text-cyan-600 flex items-center justify-center font-bold mb-3 group-hover:scale-110 transition-transform">
+                  <Headphones className="w-5 h-5" />
+                </div>
+                <div className="text-xs font-bold text-cyan-600 uppercase tracking-wider">Fast Echo</div>
+                <h3 className="font-bold text-slate-900 text-sm mt-1">Listen & Repeat Sprint</h3>
+                <p className="text-xs text-slate-500 mt-1">
+                  Echo native audio clips within 3 seconds to rewire auditory reflexes.
+                </p>
+              </div>
+              <div className="mt-4 flex items-center text-xs font-bold text-cyan-600 space-x-1">
+                <span>Echo Drill</span>
+                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </Link>
+
+            <Link
+              href="/practice/paragraph/p1"
+              className="group p-5 bg-white rounded-2xl border border-slate-200 hover:border-emerald-500 shadow-sm hover:shadow-md transition flex flex-col justify-between"
+            >
+              <div>
+                <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold mb-3 group-hover:scale-110 transition-transform">
+                  <ScrollText className="w-5 h-5" />
+                </div>
+                <div className="text-xs font-bold text-emerald-600 uppercase tracking-wider">Stamina & Flow</div>
+                <h3 className="font-bold text-slate-900 text-sm mt-1">Continuous Reading</h3>
+                <p className="text-xs text-slate-500 mt-1">
+                  Read full multi-sentence paragraphs with live pause and hesitation tracking.
+                </p>
+              </div>
+              <div className="mt-4 flex items-center text-xs font-bold text-emerald-600 space-x-1">
+                <span>Read Paragraph</span>
+                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </Link>
+
+            <Link
+              href="/practice/story/s1"
+              className="group p-5 bg-white rounded-2xl border border-slate-200 hover:border-violet-500 shadow-sm hover:shadow-md transition flex flex-col justify-between"
+            >
+              <div>
+                <div className="w-10 h-10 rounded-xl bg-violet-50 text-violet-600 flex items-center justify-center font-bold mb-3 group-hover:scale-110 transition-transform">
+                  <Sparkles className="w-5 h-5" />
+                </div>
+                <div className="text-xs font-bold text-violet-600 uppercase tracking-wider">Narrative</div>
+                <h3 className="font-bold text-slate-900 text-sm mt-1">Story Chapter Drill</h3>
+                <p className="text-xs text-slate-500 mt-1">
+                  Practice contextual dialogue turns and voice emotional intonation.
+                </p>
+              </div>
+              <div className="mt-4 flex items-center text-xs font-bold text-violet-600 space-x-1">
+                <span>Play Chapter</span>
+                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </Link>
+
+            <Link
+              href="/practice/free-speaking"
+              className="group p-5 bg-white rounded-2xl border border-slate-200 hover:border-rose-500 shadow-sm hover:shadow-md transition flex flex-col justify-between"
+            >
+              <div>
+                <div className="w-10 h-10 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center font-bold mb-3 group-hover:scale-110 transition-transform">
+                  <Timer className="w-5 h-5" />
+                </div>
+                <div className="text-xs font-bold text-rose-600 uppercase tracking-wider">Spontaneous</div>
+                <h3 className="font-bold text-slate-900 text-sm mt-1">60s Monologue</h3>
+                <p className="text-xs text-slate-500 mt-1">
+                  Speak on impromptu prompts with instant filler word analysis.
+                </p>
+              </div>
+              <div className="mt-4 flex items-center text-xs font-bold text-rose-600 space-x-1">
+                <span>Start Timer</span>
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
               </div>
             </Link>
