@@ -61,3 +61,4 @@ npm --workspace=@english-platform/admin run dev &
 PID_ADMIN=$!
 
 wait $PID_BACKEND $PID_WEB $PID_ADMIN
+

@@ -5,27 +5,40 @@ This guide provides both a **single unified command** to start all services simu
 
 ---
 
-## ⚡ 1. Single Command: Run Everything Together
+## 📦 1. Dependencies Installation (Alag-Alag)
 
-You can start the **Backend API**, **Learner Web Portal**, and **Admin Console** concurrently using a single command:
+Run dependencies installation once:
 
 ```bash
-npm run dev:all
-```
-*(Or alternatively: `bash scripts/run-all.sh`)*
+# Web & Backend dependencies (Node.js + Prisma)
+npm run install:deps
 
-This script automatically:
-1. Checks for Docker and spins up PostgreSQL, Redis, and MinIO.
-2. Checks if an Android phone is plugged in via USB and reverses port `4000`.
-3. Concurrently boots:
-   - **Backend API**: `http://localhost:4000` (Swagger docs: `http://localhost:4000/api/docs`)
-   - **Learner Web**: `http://localhost:3000`
-   - **Admin Console**: `http://localhost:3001`
-4. Gracefully stops all background processes when you press `Ctrl+C`.
+# Mobile dependencies (Flutter packages)
+npm run install:mobile
+```
 
 ---
 
-## 🛠️ 2. Separate Commands (Run in Independent Terminals)
+## ⚡ 2. Web & Backend Projects: Run Together (Single Command)
+
+To run **Backend API (Port 4000)**, **Learner Web (Port 3000)**, and **Admin Portal (Port 3001)** all together in one single command:
+
+```bash
+npm run dev
+```
+
+---
+
+## 📱 3. Mobile Project: Run Directly on Phone (Single Command)
+
+To run the **Flutter Mobile App** on your phone:
+
+```bash
+npm run dev:mobile
+```
+*This command automatically reverses the port (`adb reverse tcp:4000 tcp:4000`) and launches `flutter run` on your connected Android phone!*
+
+---
 
 If you prefer to run each service in its own terminal window:
 
@@ -157,3 +170,4 @@ If your mobile and computer are connected to the same Wi-Fi router:
 | **Redis Cache** | Redis 7 | `6379` | `redis://localhost:6379` |
 | **MinIO S3 Storage** | MinIO | `9000` / `9001` | S3 API: `http://localhost:9000` • UI: [http://localhost:9001](http://localhost:9001) |
 | **Mobile App** | Flutter 3.x (Dart) | USB/ADB | `adb reverse tcp:4000 tcp:4000 && flutter run` |
+
