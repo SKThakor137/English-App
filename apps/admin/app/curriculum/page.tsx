@@ -1,7 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { BookOpen, Plus, Search, Filter, MoreVertical, Edit2, Trash2 } from 'lucide-react';
+import Link from 'next/link';
+import { BookOpen, Plus, Search, Filter, MoreVertical, Edit2, Trash2, Mic } from 'lucide-react';
 
 export default function AdminCurriculumPage() {
   const [courses] = useState([
@@ -69,6 +70,24 @@ export default function AdminCurriculumPage() {
             <span>Create Course</span>
           </button>
         </div>
+      </div>
+
+      {/* Curriculum Sub-navigation Tabs */}
+      <div className="flex border-b border-slate-800 space-x-6">
+        <Link
+          href="/curriculum"
+          className="pb-3 text-sm font-bold text-indigo-400 border-b-2 border-indigo-500 flex items-center space-x-2"
+        >
+          <BookOpen className="w-4 h-4" />
+          <span>Courses & Lessons</span>
+        </Link>
+        <Link
+          href="/curriculum/sentences"
+          className="pb-3 text-sm font-medium text-slate-400 hover:text-white transition flex items-center space-x-2"
+        >
+          <Mic className="w-4 h-4" />
+          <span>Sentence & IPA Library</span>
+        </Link>
       </div>
 
       {/* Filter and Search Bar */}
