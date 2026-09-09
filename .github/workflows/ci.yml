@@ -1,0 +1,98 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [main, master, develop]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  backend-test:
+    name: Backend Lint, Test & Build
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgrespassword
+          POSTGRES_DB: english_platform
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+      redis:
+        image: redis:7-alpine
+        ports:
+          - 6379:6379
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Generate Prisma Client
+        run: npm --workspace=backend run prisma:generate
+
+      - name: Run Backend Unit Tests
+        run: npm --workspace=backend run test
+
+      - name: Run Algorithm Verification
+        run: node backend/test-algorithms.js
+
+      - name: Build Backend Modular Monolith
+        run: npm --workspace=backend run build
+
+  web-and-admin-build:
+    name: Web & Admin Next.js 15 Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Build Learner Web Portal
+        run: npm --workspace=@english-platform/web run build
+
+      - name: Build Admin Web Portal
+        run: npm --workspace=@english-platform/admin run build
+
+  mobile-analyze:
+    name: Flutter Mobile Static Analysis
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Flutter SDK
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.27.x'
+          channel: 'stable'
+
+      - name: Flutter Pub Get
+        working-directory: ./mobile
+        run: flutter pub get
+
+      - name: Flutter Analyze
+        working-directory: ./mobile
+        run: flutter analyze
+

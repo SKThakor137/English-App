@@ -1,0 +1,34 @@
+{
+  "name": "english-speaking-platform",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Production-Ready English Speaking & Communication Practice Platform Monorepo",
+  "workspaces": [
+    "backend",
+    "apps/web",
+    "apps/admin"
+  ],
+  "scripts": {
+    "dev:backend": "npm --workspace=backend run start:dev",
+    "dev:web": "npm --workspace=@english-platform/web run dev",
+    "dev:admin": "npm --workspace=@english-platform/admin run dev",
+    "build:backend": "npm --workspace=backend run build",
+    "build:web": "npm --workspace=@english-platform/web run build",
+    "build:admin": "npm --workspace=@english-platform/admin run build",
+    "build": "npm run build:backend && npm run build:web && npm run build:admin",
+    "prisma:generate": "npm --workspace=backend run prisma:generate",
+    "prisma:seed": "npm --workspace=backend run prisma:seed"
+  },
+  "keywords": [
+    "english-learning",
+    "speech-recognition",
+    "pronunciation",
+    "nextjs",
+    "nestjs",
+    "flutter",
+    "ai"
+  ],
+  "author": "Google Deepmind & Antigravity Engineering",
+  "license": "MIT"
+}
+
