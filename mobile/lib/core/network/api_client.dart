@@ -2,7 +2,12 @@ import 'package:dio/dio.dart';
 import '../storage/secure_storage_service.dart';
 
 class ApiClient {
-  static const String baseUrl = 'http://10.0.2.2:4000/api/v1'; // Android Emulator default
+  // Configurable at runtime: flutter run --dart-define=API_URL=http://192.168.x.x:4000/api/v1
+  // For physical Android connected via USB, run `adb reverse tcp:4000 tcp:4000` to route http://127.0.0.1:4000 directly.
+  static const String baseUrl = String.fromEnvironment(
+    'API_URL',
+    defaultValue: 'http://127.0.0.1:4000/api/v1',
+  );
   final Dio dio;
   final SecureStorageService storage;
 
