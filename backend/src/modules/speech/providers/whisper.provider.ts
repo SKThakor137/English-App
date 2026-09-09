@@ -28,7 +28,7 @@ export class WhisperSpeechProvider implements ISpeechProvider {
     const model = isGroq ? 'whisper-large-v3' : 'whisper-1';
 
     const formData = new FormData();
-    const blob = new Blob([audioBuffer], { type: 'audio/wav' });
+    const blob = new Blob([new Uint8Array(audioBuffer)], { type: 'audio/wav' });
     formData.append('file', blob, 'recording.wav');
     formData.append('model', model);
     formData.append('response_format', 'verbose_json');

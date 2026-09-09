@@ -1,6 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { PrismaService } from '../../database/prisma.service';
-import { CefrLevel, JobStatus } from '@prisma/client';
+import { CefrLevel, DocumentStatus } from '@prisma/client';
 
 export interface ExtractedSentence {
   chapterIndex: number;
@@ -23,7 +23,7 @@ export class PdfParserService {
     try {
       await this.prisma.document.update({
         where: { id: documentId },
-        data: { processingStatus: JobStatus.PROCESSING },
+        data: { status: DocumentStatus.PROCESSING },
       });
 
       // If raw extracted text was passed or mock sample
@@ -76,16 +76,14 @@ export class PdfParserService {
       }
 
       // 3. Persist document chunks in database
+      let idx = 0;
       for (const chunk of chunks) {
         await this.prisma.documentChunk.create({
           data: {
             documentId,
-            chapterIndex: chunk.chapterIndex,
-            paragraphIndex: chunk.paragraphIndex,
-            sentenceIndex: chunk.sentenceIndex,
-            contentText: chunk.contentText,
-            cleanText: chunk.cleanText,
-            calculatedLevel: chunk.calculatedLevel,
+            chunkIndex: idx++,
+            textContent: chunk.contentText || chunk.cleanText || '',
+            targetSentences: [chunk.cleanText],
           },
         });
       }
@@ -94,8 +92,8 @@ export class PdfParserService {
       await this.prisma.document.update({
         where: { id: documentId },
         data: {
-          processingStatus: JobStatus.COMPLETED,
-          totalPages: Math.max(1, Math.ceil(paragraphs.length / 3)),
+          status: DocumentStatus.COMPLETED,
+          totalSentences: chunks.length,
         },
       });
 
@@ -106,8 +104,7 @@ export class PdfParserService {
       await this.prisma.document.update({
         where: { id: documentId },
         data: {
-          processingStatus: JobStatus.FAILED,
-          errorMessage: err.message,
+          status: DocumentStatus.FAILED,
         },
       });
       throw err;

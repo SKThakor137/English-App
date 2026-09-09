@@ -20,11 +20,12 @@ export class ChallengesService {
       challenge = await this.prisma.dailyChallenge.create({
         data: {
           challengeDate: todayDate,
-          topic: 'Describe your favorite weekend routine in 60 seconds',
           promptText:
-            'Explain how you usually spend your Saturday and Sunday mornings. Focus on transition words like "afterward", "typically", and "eventually".',
-          targetDurationSeconds: 60,
-          difficulty: CefrLevel.INTERMEDIATE,
+            'Describe your favorite weekend routine in 60 seconds. Explain how you usually spend your Saturday and Sunday mornings.',
+          targetCefr: CefrLevel.INTERMEDIATE,
+          sampleAnswer:
+            'On typical weekends, I wake up early and enjoy a warm cup of coffee before going for a morning jog.',
+          pointsMultiplier: 1.5,
         },
       });
     }

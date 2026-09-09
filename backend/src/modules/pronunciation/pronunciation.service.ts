@@ -42,14 +42,20 @@ export class PronunciationService {
     if (attemptId && result.words) {
       try {
         for (const w of result.words) {
-          await this.prisma.phonemeEvaluation.create({
-            data: {
-              attemptId,
-              word: w.word,
-              wordAccuracyScore: w.accuracyScore,
-              phonemes: w.phonemes as any,
-            },
-          });
+          if (w.phonemes && Array.isArray(w.phonemes)) {
+            for (const p of w.phonemes) {
+              await this.prisma.phonemeEvaluation.create({
+                data: {
+                  attemptId,
+                  word: w.word,
+                  phoneme: p.phoneme || '',
+                  score: Number(p.score ?? 85.0),
+                  isAccurate: Number(p.score ?? 85.0) >= 75.0,
+                  ipaSymbol: p.phoneme || null,
+                },
+              });
+            }
+          }
         }
       } catch (dbErr: any) {
         this.logger.error(`Failed to persist phoneme records: ${dbErr.message}`);

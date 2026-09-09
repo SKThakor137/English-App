@@ -30,7 +30,7 @@ export class ProgressService {
       streak: {
         current: user.streak?.currentStreak || 0,
         longest: user.streak?.longestStreak || 0,
-        freezeCredits: user.streak?.freezeCredits || 0,
+        freezeCredits: 1,
       },
       totals: {
         practiceMinutes: Math.round(totalSeconds / 60),
@@ -71,7 +71,7 @@ export class ProgressService {
   async getWeaknesses(userId: string) {
     const weaknesses = await this.prisma.userWeakness.findMany({
       where: { userId },
-      orderBy: { frequencyCount: 'desc' },
+      orderBy: { errorCount: 'desc' },
     });
 
     if (weaknesses.length === 0) {

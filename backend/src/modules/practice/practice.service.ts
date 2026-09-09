@@ -183,7 +183,7 @@ export class PracticeService {
     });
 
     if (streak) {
-      const lastDate = streak.lastPracticeDate ? streak.lastPracticeDate.toISOString().split('T')[0] : null;
+      const lastDate = streak.lastActiveDate ? streak.lastActiveDate.toISOString().split('T')[0] : null;
 
       if (lastDate !== todayStr) {
         const yesterday = new Date(Date.now() - 86400000).toISOString().split('T')[0];
@@ -204,7 +204,7 @@ export class PracticeService {
           data: {
             currentStreak: newStreakCount,
             longestStreak: longest,
-            lastPracticeDate: todayDate,
+            lastActiveDate: todayDate,
           },
         });
       }

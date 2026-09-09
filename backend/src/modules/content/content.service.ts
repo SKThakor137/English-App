@@ -141,7 +141,10 @@ export class ContentService {
     }
 
     return this.prisma.course.create({
-      data: dto,
+      data: {
+        ...dto,
+        description: dto.description || dto.title,
+      },
     });
   }
 

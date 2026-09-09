@@ -25,8 +25,7 @@ export class DocumentsService {
       data: {
         userId,
         title: dto.title,
-        originalS3Key: dto.s3Key,
-        fileSizeBytes: BigInt(dto.fileSizeBytes),
+        fileS3Key: dto.s3Key,
       },
     });
 
@@ -38,7 +37,7 @@ export class DocumentsService {
     return {
       id: document.id,
       title: document.title,
-      status: document.processingStatus,
+      status: document.status,
       createdAt: document.createdAt,
     };
   }
@@ -57,9 +56,7 @@ export class DocumentsService {
     return docs.map((d) => ({
       id: d.id,
       title: d.title,
-      status: d.processingStatus,
-      fileSizeBytes: Number(d.fileSizeBytes),
-      totalPages: d.totalPages,
+      status: d.status,
       sentenceCount: d._count.chunks,
       createdAt: d.createdAt,
     }));
@@ -70,11 +67,7 @@ export class DocumentsService {
       where: { id: documentId, userId },
       include: {
         chunks: {
-          orderBy: [
-            { chapterIndex: 'asc' },
-            { paragraphIndex: 'asc' },
-            { sentenceIndex: 'asc' },
-          ],
+          orderBy: { chunkIndex: 'asc' },
         },
       },
     });
@@ -86,8 +79,7 @@ export class DocumentsService {
     return {
       id: document.id,
       title: document.title,
-      status: document.processingStatus,
-      totalPages: document.totalPages,
+      status: document.status,
       chunks: document.chunks,
     };
   }

@@ -37,10 +37,15 @@ export class AiFeedbackService {
         await this.prisma.aiFeedbackRecord.create({
           data: {
             attemptId,
-            corrections: payload.errors as any,
+            overallScore: payload.overallScore || 85,
+            grammarScore: payload.grammarScore || 85,
+            fluencyScore: payload.fluencyScore || 85,
+            accuracyScore: payload.accuracyScore || 85,
+            errors: payload.errors as any,
             suggestions: payload.suggestions as any,
-            positiveFeedback: payload.positiveFeedback as any,
-            modelVersion: apiKey ? 'gpt-4o-mini' : 'deterministic-v1',
+            positiveFeedback: Array.isArray(payload.positiveFeedback)
+              ? (payload.positiveFeedback as string[]).join(' ')
+              : (payload.positiveFeedback || 'Good effort!'),
           },
         });
       } catch (dbErr: any) {
