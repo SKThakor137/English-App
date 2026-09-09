@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -31,20 +32,23 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
         actions: [
-          Container(
-            margin: const EdgeInsets.only(right: 16),
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-            decoration: BoxDecoration(
-              color: const Color(0xFFFFF7ED),
-              borderRadius: BorderRadius.circular(20),
-              border: Border.all(color: const Color(0xFFFED7AA)),
-            ),
-            child: const Row(
-              children: [
-                Icon(Icons.local_fire_department, color: Color(0xFFF97316), size: 16),
-                SizedBox(width: 4),
-                Text('3 Days', style: TextStyle(color: Color(0xFFC2410C), fontWeight: FontWeight.bold, fontSize: 12)),
-              ],
+          GestureDetector(
+            onTap: () => context.push('/challenges'),
+            child: Container(
+              margin: const EdgeInsets.only(right: 16),
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+              decoration: BoxDecoration(
+                color: const Color(0xFFFFF7ED),
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(color: const Color(0xFFFED7AA)),
+              ),
+              child: const Row(
+                children: [
+                  Icon(Icons.local_fire_department, color: Color(0xFFF97316), size: 16),
+                  SizedBox(width: 4),
+                  Text('3 Days', style: TextStyle(color: Color(0xFFC2410C), fontWeight: FontWeight.bold, fontSize: 12)),
+                ],
+              ),
             ),
           ),
         ],
@@ -53,40 +57,43 @@ class HomeScreen extends StatelessWidget {
         padding: const EdgeInsets.all(20),
         children: [
           // Banner
-          Container(
-            padding: const EdgeInsets.all(20),
-            decoration: BoxDecoration(
-              gradient: const LinearGradient(
-                colors: [Color(0xFF16A34A), Color(0xFF047857)],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-              ),
-              borderRadius: BorderRadius.circular(24),
-              boxShadow: [
-                BoxShadow(
-                  color: const Color(0xFF16A34A).withOpacity(0.3),
-                  blurRadius: 16,
-                  offset: const Offset(0, 6),
+          GestureDetector(
+            onTap: () => context.push('/subscription'),
+            child: Container(
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                gradient: const LinearGradient(
+                  colors: [Color(0xFF16A34A), Color(0xFF047857)],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
                 ),
-              ],
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text('TODAY’S GOAL', style: TextStyle(color: Color(0xFFA7F3D0), fontSize: 11, fontWeight: FontWeight.bold)),
-                const SizedBox(height: 4),
-                const Text('12 / 15 Minutes Practiced', style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.extrabold)),
-                const SizedBox(height: 12),
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(8),
-                  child: const LinearProgressIndicator(
-                    value: 0.8,
-                    backgroundColor: Color(0xFF065F46),
-                    valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                    minHeight: 8,
+                borderRadius: BorderRadius.circular(24),
+                boxShadow: [
+                  BoxShadow(
+                    color: const Color(0xFF16A34A).withOpacity(0.3),
+                    blurRadius: 16,
+                    offset: const Offset(0, 6),
                   ),
-                ),
-              ],
+                ],
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text('TODAY’S GOAL', style: TextStyle(color: Color(0xFFA7F3D0), fontSize: 11, fontWeight: FontWeight.bold)),
+                  const SizedBox(height: 4),
+                  const Text('12 / 15 Minutes Practiced', style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.extrabold)),
+                  const SizedBox(height: 12),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: const LinearProgressIndicator(
+                      value: 0.8,
+                      backgroundColor: Color(0xFF065F46),
+                      valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                      minHeight: 8,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
           const SizedBox(height: 24),
@@ -101,7 +108,7 @@ class HomeScreen extends StatelessWidget {
             icon: Icons.mic,
             iconColor: const Color(0xFF16A34A),
             iconBg: const Color(0xFFDCFCE7),
-            onTap: () {},
+            onTap: () => context.push('/sentence-practice'),
           ),
           const SizedBox(height: 12),
 
@@ -112,7 +119,7 @@ class HomeScreen extends StatelessWidget {
             icon: Icons.chat_bubble_outline,
             iconColor: const Color(0xFF4F46E5),
             iconBg: const Color(0xFFEEF2FF),
-            onTap: () {},
+            onTap: () => context.push('/conversations'),
           ),
           const SizedBox(height: 12),
 
@@ -123,7 +130,7 @@ class HomeScreen extends StatelessWidget {
             icon: Icons.description_outlined,
             iconColor: const Color(0xFFD97706),
             iconBg: const Color(0xFFFEF3C7),
-            onTap: () {},
+            onTap: () => context.push('/documents'),
           ),
           const SizedBox(height: 12),
 
@@ -134,7 +141,7 @@ class HomeScreen extends StatelessWidget {
             icon: Icons.style_outlined,
             iconColor: const Color(0xFF9333EA),
             iconBg: const Color(0xFFF3E8FF),
-            onTap: () {},
+            onTap: () => context.push('/vocabulary'),
           ),
         ],
       ),
@@ -143,6 +150,12 @@ class HomeScreen extends StatelessWidget {
         selectedItemColor: const Color(0xFF16A34A),
         unselectedItemColor: const Color(0xFF94A3B8),
         type: BottomNavigationBarType.fixed,
+        onTap: (index) {
+          if (index == 0) context.go('/home');
+          if (index == 1) context.push('/practice');
+          if (index == 2) context.push('/conversations');
+          if (index == 3) context.push('/progress');
+        },
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home_outlined), label: 'Home'),
           BottomNavigationBarItem(icon: Icon(Icons.mic_none), label: 'Practice'),
